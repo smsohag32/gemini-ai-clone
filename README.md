@@ -1,0 +1,3 @@
+### Gemini Clone Ai Project ....
+
+# Technology:: React.js , Tailwind css, Shadcn/ui, redux toolkit.
