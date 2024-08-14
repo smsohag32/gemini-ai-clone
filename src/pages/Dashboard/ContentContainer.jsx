@@ -53,7 +53,7 @@ const ContentContainer = () => {
          </div>
 
          {/* prompt input */}
-         <div className='mt-auto flex flex-col justify-center items-center px-5 lg:px-0'>
+         <div className='mt-auto flex flex-col justify-center items-center z-50 px-5 lg:px-0'>
             <div className='bg-[#1E1F20] rounded-full w-full max-w-4xl relative'>
                <input
                   value={inputText}
