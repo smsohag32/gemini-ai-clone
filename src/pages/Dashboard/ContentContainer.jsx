@@ -5,6 +5,7 @@ import WelcomeBox from './WelcomeBox';
 import { GeminiContext } from '@/context/GeminiContext';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import geminiImage from "@/assets/google-gemini-icon.webp";
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ContentContainer = () => {
    const {
@@ -42,7 +43,11 @@ const ContentContainer = () => {
                </div>
                <div className='mt-8 flex items-start gap-3'>
                   <img src={geminiImage} alt='gemini' className={`w-10 ${isLoading ? "animate-spin duration-1000" : ""}`} />
-                  <div dangerouslySetInnerHTML={{ __html: resultData }} />
+                  {isLoading ? <div className="space-y-2 w-full">
+                     <Skeleton className="h-4 w-full" />
+                     <Skeleton className="h-4 w-11/12" />
+                  </div> :
+                     <div dangerouslySetInnerHTML={{ __html: resultData }} />}
                </div>
             </div>}
          </div>
