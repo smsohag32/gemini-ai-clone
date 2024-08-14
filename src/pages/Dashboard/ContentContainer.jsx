@@ -1,13 +1,14 @@
 import gemini from '@/config/gemini-config';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { MdOutlineKeyboardVoice } from "react-icons/md";
 import WelcomeBox from './WelcomeBox';
 import { GeminiContext } from '@/context/GeminiContext';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import geminiImage from "@/assets/google-gemini-icon.webp"
-const ContentContainer = () => {
+import geminiImage from "@/assets/google-gemini-icon.webp";
 
-   const { isLoading,
+const ContentContainer = () => {
+   const {
+      isLoading,
       recentData,
       showResults,
       setRecentData,
@@ -16,38 +17,47 @@ const ContentContainer = () => {
       inputText,
       recentInput,
       onSend,
-      setInputText } = useContext(GeminiContext)
+      setInputText
+   } = useContext(GeminiContext);
 
+   const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+         e.preventDefault(); // Prevents the default behavior of the Enter key
+         onSend(); // Calls the onSend function
+      }
+   };
 
    return (
       <div className='flex flex-col h-[calc(100vh-80px)] '>
          <div>
-            {!showResults ? <WelcomeBox /> : <div className='result-container max-w-5xl mx-auto  h-[73vh] overflow-y-scroll  px-10 pb-4 pt-10'>
-
+            {!showResults ? <WelcomeBox /> : <div className='result-container max-w-5xl mx-auto h-[73vh] overflow-y-scroll px-10 pb-4 pt-10'>
                <div className='flex items-start gap-3'>
                   <Avatar>
                      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                      <AvatarFallback>SM</AvatarFallback>
                   </Avatar>
-                  <div className=''>
+                  <div>
                      <p>{recentInput}</p>
                   </div>
                </div>
                <div className='mt-8 flex items-start gap-3'>
                   <img src={geminiImage} alt='gemini' className={`w-10 ${isLoading ? "animate-spin duration-1000" : ""}`} />
-
                   <div dangerouslySetInnerHTML={{ __html: resultData }} />
                </div>
             </div>}
          </div>
 
-
-
          {/* prompt input */}
          <div className='mt-auto flex flex-col justify-center items-center px-5 lg:px-0'>
             <div className='bg-[#1E1F20] rounded-full w-full max-w-4xl relative'>
-               <input value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder='Enter a prompt here' className='bg-[#1E1F20] placeholder:text-gray-400 rounded-full py-5 text-[17px] w-full outline-none  font-medium px-7' />
-               <div className='absolute top-1/2 right-5 -translate-y-1/2 flex items-center '>
+               <input
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder='Enter a prompt here'
+                  className='bg-[#1E1F20] placeholder:text-gray-400 rounded-full py-5 text-[17px] w-full outline-none font-medium px-7'
+               />
+               <div className='absolute top-1/2 right-5 -translate-y-1/2 flex items-center'>
                   <button className='p-4 flex items-center justify-center hover:bg-[#37393B] rounded-full transition-all duration-300'>
                      <MdOutlineKeyboardVoice className='text-2xl' />
                   </button>
