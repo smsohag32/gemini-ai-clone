@@ -58,6 +58,14 @@ module.exports = {
             md: "calc(var(--radius) - 2px)",
             sm: "calc(var(--radius) - 4px)",
          },
+         code: {
+            backgroundColor: "#e5e7eb",
+            padding: "0.25rem 0.5rem",
+            borderRadius: "0.25rem",
+            fontSize: "0.875rem",
+            lineHeight: "1.25rem",
+            whiteSpace: "pre-wrap",
+         },
          keyframes: {
             "accordion-down": {
                from: { height: "0" },

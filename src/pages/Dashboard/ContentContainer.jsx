@@ -35,7 +35,8 @@ const ContentContainer = () => {
                </div>
                <div className='mt-8 flex items-start gap-3'>
                   <img src={geminiImage} alt='gemini' className={`w-10 ${isLoading ? "animate-spin duration-1000" : ""}`} />
-                  <p>{resultData}</p>
+
+                  <div dangerouslySetInnerHTML={{ __html: resultData }} />
                </div>
             </div>}
          </div>
@@ -43,7 +44,7 @@ const ContentContainer = () => {
 
 
          {/* prompt input */}
-         <div className='mt-auto flex flex-col justify-center items-center'>
+         <div className='mt-auto flex flex-col justify-center items-center px-5 lg:px-0'>
             <div className='bg-[#1E1F20] rounded-full w-full max-w-4xl relative'>
                <input value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder='Enter a prompt here' className='bg-[#1E1F20] placeholder:text-gray-400 rounded-full py-5 text-[17px] w-full outline-none  font-medium px-7' />
                <div className='absolute top-1/2 right-5 -translate-y-1/2 flex items-center '>
@@ -57,7 +58,7 @@ const ContentContainer = () => {
                   </button> : null}
                </div>
             </div>
-            <p className='text-sm font-medium mt-3 text-[#A3B2C1]'>Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy & Gemini Apps</p>
+            <p className='text-sm text-center font-medium mt-3 text-[#A3B2C1]'>Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy & Gemini Apps</p>
          </div>
       </div>
    );
